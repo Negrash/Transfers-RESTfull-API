@@ -23,11 +23,10 @@ public class AccountController {
 
     @GetMapping("/accounts/{id}")
     public Account getAccount(@PathVariable Integer id) {
-        Account account = service.findAccountById(id);
-        return account;
+        return service.findAccountById(id);
     }
 
-    @PutMapping("/accounts/{name}/{amount}")
+    @PostMapping("/accounts/{name}/{amount}")
     public Response addAccount(@PathVariable String name, @PathVariable Double amount) {
         Response response;
         Boolean result = service.addAccount(name, amount);
@@ -40,7 +39,7 @@ public class AccountController {
         return service.findAllTransfers();
     }
 
-    @PostMapping("/transfers")
+    @PutMapping("/transfers")
     public Response transfer(@RequestBody TransferRequest request) {
         Response response;
         try {
